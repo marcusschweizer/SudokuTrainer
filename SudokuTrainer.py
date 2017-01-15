@@ -26,8 +26,9 @@ def main():
 	print("Running Sudoku Trainer:")
 	sud1 = Sudoku()
 	sud1.generate_random()
+	Sudoku.print(sud1)
 	print(sud1)
-
+	#print(sud1.board2)
 
 
 
