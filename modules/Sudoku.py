@@ -4,6 +4,10 @@ import numpy as np
 
 
 class Sudoku(object):
+	"""Sudoku object
+	
+	[description]
+	"""
 
 
 	def __init__(self):

@@ -1,5 +1,6 @@
 
 from modules.Sudoku import *
+from modules.fileio import *
 import os
 from sys import platform
 
@@ -29,7 +30,13 @@ def main():
 	Sudoku.print(sud1)
 	print(sud1)
 	#print(sud1.board2)
+	#
+	data_file = "data/example.txt"
 
+	fileio.to_file(sud1, data_file)
+	sud2 = fileio.from_file(data_file)
+
+	print(sud2)
 
 
 if __name__ == '__main__':
