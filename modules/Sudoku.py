@@ -1,23 +1,43 @@
 
 import random
 import numpy as np
-
+import string
+from .helper import *
 
 class Sudoku(object):
 	"""Sudoku object
 	
 	[description]
 	"""
+	
+	def __init__(self, str_board = "", name = "Sudoku"):
+		self.name = name
+		if str_board == "":
+			self.board = np.empty([9,9], dtype=int)
+		else:
+			[self.name, self.board] = Sudoku.from_string(str_board)
 
 
-	def __init__(self):
-		#self.board = [[None]*9 for i in range(9)]
-		self.board = np.empty([9,9], dtype=int)
-		
+	def from_string(str_board):
+
+		str_board = replace_all(str_board, ' )', '')
+
+		[ name, str_board ] = str_board.split('(')
+
+		board = []
+		for line in str_board.split(',\n'):
+			line = replace_all(line, '[]\n', '')
+			board.append([ int(n) for n in line.split(',') ])
+			
+		return name, np.array(board)
+
+
+
+
 
 	def __str__(self):		
-		
-		return str(self.board)
+		prefix = "%s("   % self.name
+		return   "%s%s)" % (prefix, np.array2string(self.board, separator=", ", prefix=prefix))
 
 	def print(s):
 		"""Print a nice sudoku board to the console
@@ -36,6 +56,19 @@ class Sudoku(object):
 				ret_str += ((" | " if (col+1)%3 == 0 else " | ") if col<8 else "")
 			ret_str += " |" + (("\n" + newrow) if (row+1)%3 == 0 else "\n")
 		print( ret_str )
+
+	def is_empty(self):
+		"""Test for empty sudoku
+		
+		Returns:
+			bool -- is sudoku board empty
+		"""
+		for row in range(9):
+			for col in range(9):
+				if self.board[row, col] > 0:
+					return False
+		return True
+
 
 
 	def generate_random(self):

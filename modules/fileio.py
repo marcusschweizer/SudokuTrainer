@@ -15,21 +15,40 @@ class fileio(object):
 
 		fout = open(filename, "w")
 
-		fout.write("Sudoku 1:")
+		fout.write(str(sudoku))
+		fout.write("\n")
 		fout.close()
 
-		np.savetxt(filename, sudoku.board, fmt='%d')
+		#np.savetxt(filename, sudoku.board, fmt='%d')
 
 
 	def from_file(filename):
 		if not os.path.exists(filename):
 			raise IOError("File not found")
 			return
-		"""fin = open(filename)
+		fin = open(filename)
 
-		fin.close()"""
-		sud = Sudoku()
+		sudoku_strings = []
+		cur_string = ""
+		i = 0
+		line_num = 0
 
-		sud.board = np.loadtxt(filename, dtype=int)
+		for line in fin:
+			cur_string += line
+			line_num += 1
+			if line_num%9 == 0:
+				sudoku_strings.append(cur_string)
+				cur_string = ""
+				i += 1
 
-		return sud
+		fin.close()
+
+
+		sudokus = []
+		for sudoku_string in sudoku_strings:
+			sudokus.append(Sudoku(str_board=sudoku_string))
+
+
+		#sud.board = np.loadtxt(filename, dtype=int)
+
+		return sudokus
