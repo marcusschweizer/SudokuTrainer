@@ -15,7 +15,7 @@ class fileio(object):
 
 		fout = open(filename, "w")
 
-		fout.write(str(sudoku))
+		fout.write(sudoku.to_string())
 		fout.write("\n")
 		fout.close()
 

@@ -32,9 +32,12 @@ def main():
 
 
 	suds = fileio.from_file(data_file)
-	for sud in suds:
-		if not sud.is_empty():
-			Sudoku.print(sud)
+	suds = [sud for sud in suds if not sud.is_empty()]
+
+	sudoku = suds[0]
+
+	Sudoku.print(sudoku)
+
 
 
 if __name__ == '__main__':
