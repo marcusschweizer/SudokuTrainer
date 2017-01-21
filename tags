@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Sudoku	modules/Sudoku.py	/^class Sudoku(object):$/;"	kind:class	line:7
+Sudoku.py	modules/Sudoku.py	1;"	kind:file	line:1
+SudokuTrainer.py	SudokuTrainer.py	1;"	kind:file	line:1
+__init__	modules/Sudoku.py	/^	def __init__(self, str_board = "", name = "Sudoku"):$/;"	kind:member	line:13
+__init__.py	modules/__init__.py	1;"	kind:file	line:1
+__str__	modules/Sudoku.py	/^	def __str__(self):		$/;"	kind:member	line:38
+alg_OnlyOptionByBlock	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock(self, num, block_row, block_col):$/;"	kind:member	line:102
+check_col_for	modules/Sudoku.py	/^	def check_col_for(col, num):$/;"	kind:member	line:96
+check_row_for	modules/Sudoku.py	/^	def check_row_for(self, row, num):				$/;"	kind:member	line:89
+fileio	modules/fileio.py	/^class fileio(object):$/;"	kind:class	line:6
+fileio.py	modules/fileio.py	1;"	kind:file	line:1
+from_file	modules/fileio.py	/^	def from_file(filename):$/;"	kind:member	line:25
+from_string	modules/Sudoku.py	/^	def from_string(str_board):$/;"	kind:member	line:21
+generate_random	modules/Sudoku.py	/^	def generate_random(self):$/;"	kind:member	line:78
+helper.py	modules/helper.py	1;"	kind:file	line:1
+is_empty	modules/Sudoku.py	/^	def is_empty(self):$/;"	kind:member	line:64
+main	SudokuTrainer.py	/^def main():$/;"	kind:function	line:11
+np	modules/Sudoku.py	/^import numpy as np$/;"	kind:namespace	line:3
+np	modules/fileio.py	/^import numpy as np$/;"	kind:namespace	line:3
+os	SudokuTrainer.py	/^import os$/;"	kind:namespace	line:4
+os	modules/fileio.py	/^import os$/;"	kind:namespace	line:1
+platform	SudokuTrainer.py	/^from sys import platform$/;"	kind:namespace	line:5
+print	modules/Sudoku.py	/^	def print(s):$/;"	kind:member	line:45
+random	modules/Sudoku.py	/^import random$/;"	kind:namespace	line:2
+replace_all	modules/helper.py	/^def replace_all(string, old, new=''):$/;"	kind:function	line:5
+string	modules/Sudoku.py	/^import string$/;"	kind:namespace	line:4
+to_file	modules/fileio.py	/^	def to_file(sudoku, filename):$/;"	kind:member	line:14
+to_string	modules/Sudoku.py	/^	def to_string(self):$/;"	kind:member	line:41

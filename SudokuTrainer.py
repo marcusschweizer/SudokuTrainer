@@ -3,7 +3,7 @@ from modules.Sudoku import *
 from modules.fileio import *
 import os
 from sys import platform
-
+import time
 
 
 
@@ -36,9 +36,23 @@ def main():
 
 	sudoku = suds[0]
 
-	Sudoku.print(sudoku)
+	print(sudoku.print_board())
+	
+	still_changing = True
+	while (still_changing):
+		still_changing = False
+		for num in range(9):
+			for row in range(3):
+				for col in range(3):
+					success = sudoku.alg_OnlyOptionByBlock(row, col, num+1)
 
-
+					if success:
+						time.sleep(0.25)
+						clear()
+						print("Running Sudoku Trainer:")
+						print(sudoku.print_board())
+						#print(sudoku.print_actions())
+						still_changing = True
 
 if __name__ == '__main__':
 	main()
