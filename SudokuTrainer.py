@@ -49,7 +49,6 @@ def main():
 			clear()
 			print("Running Sudoku Trainer:")
 			print(sudoku.print_board())
-			#print(sudoku.print_actions())
 			still_changing = True
 
 			

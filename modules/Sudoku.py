@@ -120,9 +120,7 @@ class Sudoku(object):
 		return False
 	
 	def block_contains(self, block_row, block_col, num):
-		if num in self.board[ ((block_row)*3):((block_row)*3+3), ((block_col)*3):((block_col)*3+3) ]:
-			return True
-		return False
+		return num in self.board[ ((block_row)*3):((block_row)*3+3), ((block_col)*3):((block_col)*3+3) ]
 
 	def alg_OnlyOptionByBlock(self):
 		success = False
@@ -177,7 +175,44 @@ class Sudoku(object):
 			self.log.append("alg_OnlyOptionByBlock(%d, %d, %d), something went wrong :(" % (block_row, block_col, num) )
 			return False
 
-		
+	
+	def alg_OnlyOptionByRow(self):
+		success = False
+		for row in range(9):
+			if self.alg_OnlyOptionByRow_PerRow(row):
+				success = True
+		return success
+
+	def alg_OnlyOptionByRow_PerRow(self, row):
+
+		print("Helloworld")
+
+		for num in range(1,10):
+			num_true = 0
+			num_false = 0
+			current_col = 0
+			col = -1
+			if not self.row_contains(row, num):
+				for cell in self.board[row, :]:
+					if cell == 0:
+						if not self.col_contains(current_col, num):
+							num_true += 1
+							col = current_col
+						else:
+							num_false += 1
+					current_col += 1
+			print(row, num_true, num_false, col, num)
+			if num_true == 1:
+				print("found!")
+
+
+
+
+
+		#for cell in self.board[row, :]:
+		#	if cell == 0:
+
+	
 
 
 		

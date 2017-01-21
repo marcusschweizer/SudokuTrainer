@@ -1,0 +1,7 @@
+
+- Make SudokuSolver, SudokuGenerator and make the Sukoku just checking and tools, can also have a subclass in 
+Sudoku for these items, could use inheritance to keep them in separate files.
+- Documentation, see if I can get autodocumentation going
+- Checking methods to check rows, columns and blocks are consistent and correct
+- More Algorithms!
+- How to do more stringent testing?
