@@ -124,7 +124,24 @@ class Sudoku(object):
 			return True
 		return False
 
-	def alg_OnlyOptionByBlock(self, block_row, block_col, num):
+	def alg_OnlyOptionByBlock(self):
+		success = False
+		for num in range(1,10):
+			if self.alg_OnlyOptionByBlock_PerNum(num):
+				success = True
+		return success
+
+	def alg_OnlyOptionByBlock_PerNum(self, num):
+		success = False
+		for row in range(3):
+			for col in range(3):
+				if self.alg_OnlyOptionByBlock_PerBlockNum(row, col, num):
+					success = True
+		
+		return success
+					
+
+	def alg_OnlyOptionByBlock_PerBlockNum(self, block_row, block_col, num):
 		
 		if self.block_contains(block_row, block_col, num):
 			self.log.append( "alg_OnlyOptionByBlock(%d, %d, %d), block already contains number" % (block_row, block_col, num) )
