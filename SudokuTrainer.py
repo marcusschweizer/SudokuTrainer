@@ -37,15 +37,15 @@ def main():
 	sudoku = suds[0]
 
 	print(sudoku.print_board())
-	
-	still_changing = True
+
+	still_changing = False
 	success = False
 	while (still_changing):
 		still_changing = False
 	
 		success = sudoku.alg_OnlyOptionByBlock()
 		if success:
-			time.sleep(0)
+			time.sleep(0.5)
 			clear()
 			print("Running Sudoku Trainer:")
 			print(sudoku.print_board())
