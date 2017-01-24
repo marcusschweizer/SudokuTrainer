@@ -7,38 +7,42 @@
 Sudoku	modules/Sudoku.py	/^class Sudoku(object):$/;"	kind:class	line:7
 Sudoku.py	modules/Sudoku.py	1;"	kind:file	line:1
 SudokuTrainer.py	SudokuTrainer.py	1;"	kind:file	line:1
+__delitem__	modules/Sudoku.py	/^	def __delitem__(self, rowcol_tup):$/;"	kind:member	line:75
+__getitem__	modules/Sudoku.py	/^	def __getitem__(self, rowcol_tup):$/;"	kind:member	line:44
 __init__	modules/Sudoku.py	/^	def __init__(self, str_board = "", name = "Sudoku"):$/;"	kind:member	line:13
 __init__.py	modules/__init__.py	1;"	kind:file	line:1
-__str__	modules/Sudoku.py	/^	def __str__(self):		$/;"	kind:member	line:40
-alg_OnlyOptionByBlock	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock(self):$/;"	kind:member	line:125
-alg_OnlyOptionByBlock_PerBlockNum	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock_PerBlockNum(self, block_row, block_col, num):$/;"	kind:member	line:142
-alg_OnlyOptionByBlock_PerNum	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock_PerNum(self, num):$/;"	kind:member	line:132
-alg_OnlyOptionByRow	modules/Sudoku.py	/^	def alg_OnlyOptionByRow(self):$/;"	kind:member	line:179
-alg_OnlyOptionByRow_PerRow	modules/Sudoku.py	/^	def alg_OnlyOptionByRow_PerRow(self, row):$/;"	kind:member	line:186
-area_contains	modules/Sudoku.py	/^	def area_contains(self, rows, cols, num):$/;"	kind:member	line:115
-block_contains	modules/Sudoku.py	/^	def block_contains(self, block_row, block_col, num):$/;"	kind:member	line:122
-cell_is_empty	modules/Sudoku.py	/^	def cell_is_empty(self, row, col):$/;"	kind:member	line:89
-col_contains	modules/Sudoku.py	/^	def col_contains(self, col, num):$/;"	kind:member	line:109
+__setitem__	modules/Sudoku.py	/^	def __setitem__(self, rowcol_tup, num):$/;"	kind:member	line:48
+__str__	modules/Sudoku.py	/^	def __str__(self):		$/;"	kind:member	line:41
+alg_OnlyOptionByBlock	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock(self):$/;"	kind:member	line:164
+alg_OnlyOptionByBlock_PerBlockNum	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock_PerBlockNum(self, block_row, block_col, num):$/;"	kind:member	line:181
+alg_OnlyOptionByBlock_PerNum	modules/Sudoku.py	/^	def alg_OnlyOptionByBlock_PerNum(self, num):$/;"	kind:member	line:171
+alg_OnlyOptionByRow	modules/Sudoku.py	/^	def alg_OnlyOptionByRow(self):$/;"	kind:member	line:218
+alg_OnlyOptionByRow_PerRow	modules/Sudoku.py	/^	def alg_OnlyOptionByRow_PerRow(self, row):$/;"	kind:member	line:225
+area_contains	modules/Sudoku.py	/^	def area_contains(self, rows, cols, num):$/;"	kind:member	line:149
+block_contains	modules/Sudoku.py	/^	def block_contains(self, block_row, block_col, num):$/;"	kind:member	line:156
+block_contains_ByRowCol	modules/Sudoku.py	/^	def block_contains_ByRowCol(self, row, col, num):$/;"	kind:member	line:159
+cell_is_empty	modules/Sudoku.py	/^	def cell_is_empty(self, row, col):$/;"	kind:member	line:126
+col_contains	modules/Sudoku.py	/^	def col_contains(self, col, num):$/;"	kind:member	line:143
 fileio	modules/fileio.py	/^class fileio(object):$/;"	kind:class	line:6
 fileio.py	modules/fileio.py	1;"	kind:file	line:1
 from_file	modules/fileio.py	/^	def from_file(filename):$/;"	kind:member	line:25
-from_string	modules/Sudoku.py	/^	def from_string(str_board):$/;"	kind:member	line:23
-generate_random	modules/Sudoku.py	/^	def generate_random(self):$/;"	kind:member	line:95
+from_string	modules/Sudoku.py	/^	def from_string(self, str_board):$/;"	kind:member	line:23
+generate_random	modules/Sudoku.py	/^	def generate_random(self):$/;"	kind:member	line:130
 helper.py	modules/helper.py	1;"	kind:file	line:1
-is_empty	modules/Sudoku.py	/^	def is_empty(self):$/;"	kind:member	line:77
+is_empty	modules/Sudoku.py	/^	def is_empty(self):$/;"	kind:member	line:114
 main	SudokuTrainer.py	/^def main():$/;"	kind:function	line:11
 np	modules/Sudoku.py	/^import numpy as np$/;"	kind:namespace	line:3
 np	modules/fileio.py	/^import numpy as np$/;"	kind:namespace	line:3
 os	SudokuTrainer.py	/^import os$/;"	kind:namespace	line:4
 os	modules/fileio.py	/^import os$/;"	kind:namespace	line:1
 platform	SudokuTrainer.py	/^from sys import platform$/;"	kind:namespace	line:5
-print_actions	modules/Sudoku.py	/^	def print_actions(self):$/;"	kind:member	line:65
-print_board	modules/Sudoku.py	/^	def print_board(self):$/;"	kind:member	line:47
-print_log	modules/Sudoku.py	/^	def print_log(self):$/;"	kind:member	line:71
+print_actions	modules/Sudoku.py	/^	def print_actions(self):$/;"	kind:member	line:102
+print_board	modules/Sudoku.py	/^	def print_board(self):$/;"	kind:member	line:84
+print_log	modules/Sudoku.py	/^	def print_log(self):$/;"	kind:member	line:108
 random	modules/Sudoku.py	/^import random$/;"	kind:namespace	line:2
 replace_all	modules/helper.py	/^def replace_all(string, old, new=''):$/;"	kind:function	line:5
-row_contains	modules/Sudoku.py	/^	def row_contains(self, row, num):				$/;"	kind:member	line:102
+row_contains	modules/Sudoku.py	/^	def row_contains(self, row, num):				$/;"	kind:member	line:136
 string	modules/Sudoku.py	/^import string$/;"	kind:namespace	line:4
 time	SudokuTrainer.py	/^import time$/;"	kind:namespace	line:6
 to_file	modules/fileio.py	/^	def to_file(sudoku, filename):$/;"	kind:member	line:14
-to_string	modules/Sudoku.py	/^	def to_string(self):$/;"	kind:member	line:43
+to_string	modules/Sudoku.py	/^	def to_string(self):$/;"	kind:member	line:80

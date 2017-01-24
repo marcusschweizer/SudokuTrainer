@@ -3,6 +3,7 @@ import random
 import numpy as np
 import string
 from .helper import *
+import time
 
 class Sudoku(object):
 	"""Sudoku object
@@ -36,7 +37,6 @@ class Sudoku(object):
 				col += 1
 			row += 1
 				
-		#return name, np.array(board)
 
 
 	def __str__(self):		
@@ -128,12 +128,6 @@ class Sudoku(object):
 		return self[row,col] == 0
 
 
-	def generate_random(self):
-		for row in range(9):
-			for col in range(9):
-				self[row, col] = random.randrange(0,9)
-
-
 	def row_contains(self, row, num):				
 		for col in range(9):
 			if self[row, col] == num:
@@ -160,93 +154,6 @@ class Sudoku(object):
 	def block_contains_ByRowCol(self, row, col, num):
 		block_row, block_col = int(row/3), int(col/3)
 		return self.block_contains(block_row, block_col, num)
-
-
-	def alg_OnlyOptionByBlock(self):
-		success = False
-		for num in range(1,10):
-			if self.alg_OnlyOptionByBlock_PerNum(num):
-				success = True
-		return success
-
-	def alg_OnlyOptionByBlock_PerNum(self, num):
-		success = False
-		for row in range(3):
-			for col in range(3):
-				if self.alg_OnlyOptionByBlock_PerBlockNum(row, col, num):
-					success = True
-		
-		return success
-					
-
-	def alg_OnlyOptionByBlock_PerBlockNum(self, block_row, block_col, num):
-		
-		if self.block_contains(block_row, block_col, num):
-			self.log.append( "alg_OnlyOptionByBlock(%d, %d, %d), block already contains number" % (block_row, block_col, num) )
-			return False
-		
-		rows = range((block_row)*3, (block_row)*3+3)
-		cols = range((block_col)*3, (block_col)*3+3)
-		
-		block = np.zeros([3,3], dtype=bool)
-
-		num_false = 0
-		num_true = 0
-		[x, y] = [-1, -1]
-		for row in rows:
-			for col in cols:
-				if self.row_contains(row, num) or self.col_contains(col, num) or not self.cell_is_empty(row, col):
-					block[row%3, col%3] = False
-					num_false += 1
-				else:
-					block[row%3, col%3] = True
-					[x, y] = [row, col]
-					num_true += 1
-		
-		if num_true == 1:
-			self[x,y] = num
-			self.log.append("alg_OnlyOptionByBlock(%d, %d, %d), adding number to [%d, %d]" % (block_row, block_col, num, x+1, y+1) )
-			self.actions.append("Success! Adding %d to location row %d, col %d" % (num, x, y) )
-			return True
-		elif num_true > 1:
-			self.log.append("alg_OnlyOptionByBlock(%d, %d, %d), too many options (%d)" % (block_row, block_col, num, num_true) )
-			return False
-		else:
-			self.log.append("alg_OnlyOptionByBlock(%d, %d, %d), something went wrong :(" % (block_row, block_col, num) )
-			return False
-
-	
-	def alg_OnlyOptionByRow(self):
-		success = False
-		for row in range(9):
-			if self.alg_OnlyOptionByRow_PerRow(row):
-				success = True
-		return success
-
-	def alg_OnlyOptionByRow_PerRow(self, row):
-
-		print("Helloworld")
-
-		for num in range(1,10):
-			num_true = 0
-			num_false = 0
-			current_col = 0
-			col = -1
-			if not self.row_contains(row, num):
-				for cell in self[row, :]:
-					if cell == 0:
-						if not self.col_contains(current_col, num):
-							num_true += 1
-							col = current_col
-						else:
-							num_false += 1
-					current_col += 1
-			print(row, num_true, num_false, col, num)
-			if num_true == 1:
-				print("found!")
-
-
-	
 
 
 		

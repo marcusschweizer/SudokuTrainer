@@ -5,3 +5,4 @@ Sudoku for these items, could use inheritance to keep them in separate files.
 - Checking methods to check rows, columns and blocks are consistent and correct
 - More Algorithms!
 - How to do more stringent testing?
+- Generate by selecting random number, testing if it fits and testing difficulty solving it?

@@ -1,8 +1,10 @@
 
 from modules.Sudoku import *
+from modules.SudokuSolver import *
 from modules.fileio import *
-import os
-from sys import platform
+from modules.helper import *
+
+
 import time
 
 
@@ -10,19 +12,11 @@ import time
 
 def main():
 	
-	if platform == "linux" or platform == "linux2":
-		# linuxux
-		clear = lambda: os.system('clear')
-	elif platform == "darwin":
-		# OS X
-	    clear = lambda: os.system('clear')
-	elif platform == "win32":
-		# Windows...
-	    clear = lambda: os.system('cls')
+
 
 
 	
-	clear()
+	clear_terminal()
 
 	print("Running Sudoku Trainer:")
 
@@ -38,6 +32,10 @@ def main():
 
 	print(sudoku.print_board())
 
+	
+	SudokuSolver.solve(sudoku, print_to_terminal=True)
+	
+"""
 	still_changing = False
 	success = False
 	while (still_changing):
@@ -49,7 +47,7 @@ def main():
 			clear()
 			print("Running Sudoku Trainer:")
 			print(sudoku.print_board())
-			still_changing = True
+			still_changing = True"""
 
 			
 
