@@ -8,15 +8,29 @@ class SudokuSolver(object):
 
     @staticmethod
     def solve(sudoku, print_to_terminal=False, print_wait_time=0):
+        
+        if sudoku.is_solved():
+            print("Already solved!")
+            return
+        
+        start_progress = sudoku.progress()
         still_changing = True
         while (still_changing):
-            still_changing = SudokuSolver.alg_OnlyOptionByBlock(sudoku)
+            change_by_block = SudokuSolver.alg_OnlyOptionByBlock(sudoku)
+            change_by_row = SudokuSolver.alg_OnlyOptionByCol(sudoku)
+            change_by_col = SudokuSolver.alg_OnlyOptionByRow(sudoku)
+
+            still_changing = change_by_block or change_by_row or change_by_col
+        
             if print_to_terminal:
                 time.sleep(print_wait_time)
                 clear_terminal()
                 print(sudoku.print_board())
 
-
+        if sudoku.is_solved():
+            print("Solved!")
+        else:
+            print("Sorry I wasn't able to solve it completely, from %.1f%% to %.1f%% solved" % (start_progress*100, sudoku.progress()*100))
 
     def alg_OnlyOptionByBlock(sudoku):
         success = False
@@ -34,7 +48,6 @@ class SudokuSolver(object):
         
         return success
                     
-
     def alg_OnlyOptionByBlock_PerBlockNum(sudoku, block_row, block_col, num):
         
         if sudoku.block_contains(block_row, block_col, num):
@@ -72,6 +85,7 @@ class SudokuSolver(object):
             return False
 
 
+
     def alg_OnlyOptionByRow(sudoku):
         success = False
         for row in range(9):
@@ -80,23 +94,79 @@ class SudokuSolver(object):
         return success
 
     def alg_OnlyOptionByRow_PerRow(sudoku, row):
-
-        print("Helloworld")
-
+        success = False
         for num in range(1,10):
-            num_true = 0
-            num_false = 0
-            current_col = 0
-            col = -1
-            if not sudoku.row_contains(row, num):
-                for cell in sudoku[row, :]:
-                    if cell == 0:
-                        if not sudoku.col_contains(current_col, num):
-                            num_true += 1
-                            col = current_col
-                        else:
-                            num_false += 1
-                    current_col += 1
-            print(row, num_true, num_false, col, num)
-            if num_true == 1:
-                print("found!")
+            if SudokuSolver.alg_OnlyOptionByRow_PerRowNum(sudoku, row, num):
+                success = True
+        return success
+
+    def alg_OnlyOptionByRow_PerRowNum(sudoku, row, num):
+
+        num_true = 0
+        num_false = 0
+        current_col = 0
+        col = -1
+        if not sudoku.row_contains(row, num):
+            for cell in sudoku[row, :]:
+                if cell == 0:
+                    if not sudoku.col_contains(current_col, num) and not sudoku.block_contains_ByRowCol(row, current_col, num):
+                        num_true += 1
+                        col = current_col
+                    else:
+                        num_false += 1
+                current_col += 1
+
+        if num_true == 1:
+            sudoku[row, col] = num
+            sudoku.log.append("alg_OnlyOptionByRow_PerRowNum(sudoku, %d, %d), adding %d to [%d, %d]" % ( row, num, num, row + 1, col + 1) )
+            sudoku.actions.append("Success! Adding %d to location row %d, col %d" % (num, row, col) )
+            return True
+        elif num_true > 1:
+            sudoku.log.append("alg_OnlyOptionByRow_PerRowNum(sudoku, %d, %d), too many options (%d)" % (row, num, num_true) )
+            return False
+        else:
+            sudoku.log.append("alg_OnlyOptionByRow_PerRowNum(sudoku, %d, %d), something went wrong" % (row, num) )
+            return False
+
+
+    def alg_OnlyOptionByCol(sudoku):
+        success = False
+        for col in range(9):
+            if SudokuSolver.alg_OnlyOptionByRow_PerRow(sudoku, col):
+                success = True
+        return success
+
+    def alg_OnlyOptionByCol_PerCol(sudoku, col):
+        success = False
+        for num in range(1,10):
+            if SudokuSolver.alg_OnlyOptionByCol_PerColNum(sudoku, col, num):
+                success = True
+        return success
+
+    def alg_OnlyOptionByCol_PerColNum(sudoku, col, num):
+        
+        num_true = 0
+        num_false = 0
+        current_row = 0
+        row = -1
+        if not sudoku.col_contains(col, num):
+            for cell in sudoku[:, col]:
+                if cell == 0:
+                    if not sudoku.row_contains(current_row, num) and not sudoku.block_contains_ByRowCol(current_row, col, num):
+                        num_true += 1
+                        row = current_row
+                    else:
+                        num_false += 1
+                current_row += 1
+
+        if num_true == 1:
+            sudoku[row, col] = num
+            sudoku.log.append("alg_OnlyOptionByCol_PerColNum(sudoku, %d, %d), adding %d to [%d, %d]" % ( row, num, num, row + 1, col + 1) )
+            sudoku.actions.append("Success! Adding %d to location row %d, col %d" % (num, row, col) )
+            return True
+        elif num_true > 1:
+            sudoku.log.append("alg_OnlyOptionByCol_PerColNum(sudoku, %d, %d), too many options (%d)" % (row, num, num_true) )
+            return False
+        else:
+            sudoku.log.append("alg_OnlyOptionByCol_PerColNum(sudoku, %d, %d), something went wrong" % (row, num) )
+            return False

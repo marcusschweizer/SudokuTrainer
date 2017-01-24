@@ -83,12 +83,8 @@ class Sudoku(object):
 		return   "%s%s)" % (prefix, np.array2string(self.board, separator=", ", prefix=prefix))
 
 	def print_board(self):
-		"""Print a nice sudoku board to the console
-
-		Displays a nice version of a the sudoku board for display in the console
+		"""Print a nice sudoku board for the console
 		
-		Arguments:
-			s {Sudoku} -- 
 		"""
 		newrow = "+" + ("-"*11 + "+")*3 + "\n"
 		ret_str = "Name: %s\n%s" % (self.name, newrow)
@@ -99,6 +95,7 @@ class Sudoku(object):
 				ret_str += ((" | " if (col+1)%3 == 0 else " | ") if col<8 else "")
 			ret_str += " |" + (("\n" + newrow) if (row+1)%3 == 0 else "\n")
 		return ret_str
+
 
 	def print_actions(self):
 		ret_str = "Actions:\n"
@@ -111,6 +108,12 @@ class Sudoku(object):
 		for entry in self.log:
 			ret_str += entry + '\n'
 		return ret_str
+
+	def is_solved(self):
+		return self.counts[0] == 0
+	
+	def progress(self):
+		return (1-self.counts[0]/81)
 
 	def is_empty(self):
 		"""Test for empty sudoku
@@ -125,7 +128,7 @@ class Sudoku(object):
 		return True
 
 	def cell_is_empty(self, row, col):
-		return self[row,col] == 0
+		return self[row, col] == 0
 
 
 	def row_contains(self, row, num):				
