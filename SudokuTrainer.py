@@ -1,6 +1,7 @@
 
 from modules.Sudoku import *
 from modules.SudokuSolver import *
+from modules.SudokuGenerator import *
 from modules.fileio import *
 from modules.helper import *
 
@@ -18,7 +19,6 @@ def main():
 	
 	clear_terminal()
 
-	print("Running Sudoku Trainer:")
 
 	data_file = "data/example.txt"
 
@@ -26,12 +26,29 @@ def main():
 	suds = fileio.from_file(data_file)
 	suds = [sud for sud in suds if not sud.is_empty()]
 
-	sudoku = suds[1]
+	sudoku = suds[3]
 
-	print(sudoku.print_board())
+#	print(sudoku.print_board())
 
-	SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=0)
+	#SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=0)
 
+	#"""	
+	for sud in suds:
+		SudokuSolver.solve(sud, True, 0)
+		time.sleep(1)
+
+	for sud in suds:
+		print(sud.print_board())
+	#"""
+	"""
+	sud3 = Sudoku()
+
+	SudokuGenerator.generate_random(sud3)
+	
+	print(sud3.print_board())
+
+	SudokuSolver.solve(sud3, True, 0.2)
+	#"""
 
 if __name__ == '__main__':
 	main()

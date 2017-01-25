@@ -13,12 +13,17 @@ class SudokuSolver(object):
             print("Already solved!")
             return
         
+        start_time = time.time()
         start_progress = sudoku.progress()
         still_changing = True
         while (still_changing):
             change_by_block = SudokuSolver.alg_OnlyOptionByBlock(sudoku)
-            change_by_row = SudokuSolver.alg_OnlyOptionByCol(sudoku)
-            change_by_col = SudokuSolver.alg_OnlyOptionByRow(sudoku)
+            
+            if not change_by_block:
+                change_by_row = SudokuSolver.alg_OnlyOptionByCol(sudoku)
+            if not (change_by_block or change_by_row):
+                change_by_col = SudokuSolver.alg_OnlyOptionByRow(sudoku)
+                    # not sure if required, essentially same algorithm as by row?
 
             still_changing = change_by_block or change_by_row or change_by_col
         
@@ -26,11 +31,13 @@ class SudokuSolver(object):
                 time.sleep(print_wait_time)
                 clear_terminal()
                 print(sudoku.print_board())
+                if not sudoku.is_solved():
+                    print("Solving : %.1f%%" % (sudoku.progress()*100))
 
         if sudoku.is_solved():
-            print("Solved!")
+            print("Solved! %.1f%% to %.1f%% solved in %.3f seconds!" % (start_progress*100, sudoku.progress()*100, time.time() - start_time) )
         else:
-            print("Sorry I wasn't able to solve it completely, from %.1f%% to %.1f%% solved" % (start_progress*100, sudoku.progress()*100))
+            print("Sorry, wasn't able to solve it completely, went from %.1f%% and %.1f%% solved" % (start_progress*100, sudoku.progress()*100))
 
     def alg_OnlyOptionByBlock(sudoku):
         success = False
@@ -132,7 +139,7 @@ class SudokuSolver(object):
     def alg_OnlyOptionByCol(sudoku):
         success = False
         for col in range(9):
-            if SudokuSolver.alg_OnlyOptionByRow_PerRow(sudoku, col):
+            if SudokuSolver.alg_OnlyOptionByCol_PerCol(sudoku, col):
                 success = True
         return success
 
