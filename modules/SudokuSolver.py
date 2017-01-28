@@ -2,8 +2,6 @@
 from .Sudoku import *
 
 
-
-
 class SudokuSolver(object):
 
     @staticmethod
@@ -14,6 +12,7 @@ class SudokuSolver(object):
             return
         
         start_time = time.time()
+        total_wait_time = 0
         start_progress = sudoku.progress()
         still_changing = True
         while (still_changing):
@@ -21,6 +20,7 @@ class SudokuSolver(object):
             
             if not change_by_block:
                 change_by_row = SudokuSolver.alg_OnlyOptionByCol(sudoku)
+        
             if not (change_by_block or change_by_row):
                 change_by_col = SudokuSolver.alg_OnlyOptionByRow(sudoku)
                     # not sure if required, essentially same algorithm as by row?
@@ -29,15 +29,18 @@ class SudokuSolver(object):
         
             if print_to_terminal:
                 time.sleep(print_wait_time)
+                total_wait_time += print_wait_time
                 clear_terminal()
                 print(sudoku.print_board())
+                print(sudoku.counts)
                 if not sudoku.is_solved():
                     print("Solving : %.1f%%" % (sudoku.progress()*100))
 
         if sudoku.is_solved():
-            print("Solved! %.1f%% to %.1f%% solved in %.3f seconds!" % (start_progress*100, sudoku.progress()*100, time.time() - start_time) )
+            print("Solved! %.1f%% to %.1f%% solved in %.3f seconds!" % (start_progress*100, sudoku.progress()*100, time.time() - start_time - total_wait_time) )
         else:
             print("Sorry, wasn't able to solve it completely, went from %.1f%% and %.1f%% solved" % (start_progress*100, sudoku.progress()*100))
+            print(sudoku.board_possibles)
 
     def alg_OnlyOptionByBlock(sudoku):
         success = False
@@ -48,11 +51,10 @@ class SudokuSolver(object):
 
     def alg_OnlyOptionByBlock_PerNum(sudoku, num):
         success = False
-        for row in range(3):
-            for col in range(3):
-                if SudokuSolver.alg_OnlyOptionByBlock_PerBlockNum(sudoku, row, col, num):
+        for block_row in range(3):
+            for block_col in range(3):
+                if SudokuSolver.alg_OnlyOptionByBlock_PerBlockNum(sudoku, block_row, block_col, num):
                     success = True
-        
         return success
                     
     def alg_OnlyOptionByBlock_PerBlockNum(sudoku, block_row, block_col, num):

@@ -26,17 +26,21 @@ def main():
 	suds = fileio.from_file(data_file)
 	suds = [sud for sud in suds if not sud.is_empty()]
 
-	sudoku = suds[3]
+	sudoku = suds[4]
 
-#	print(sudoku.print_board())
+	print(sudoku.print_board())
 
-	#SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=0)
-
-	#"""	
+	SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=0)
+	
+	"""	
 	for sud in suds:
-		SudokuSolver.solve(sud, True, 0)
+		clear_terminal()
+		print(sud.print_board())
 		time.sleep(1)
-
+		SudokuSolver.solve(sud, True, 0.1)
+		time.sleep(1)
+	#"""
+	"""
 	for sud in suds:
 		print(sud.print_board())
 	#"""
