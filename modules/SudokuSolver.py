@@ -179,3 +179,5 @@ class SudokuSolver(object):
         else:
             sudoku.log.append("alg_OnlyOptionByCol_PerColNum(sudoku, %d, %d), something went wrong" % (row, num) )
             return False
+
+    

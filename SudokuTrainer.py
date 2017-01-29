@@ -13,10 +13,6 @@ import time
 
 def main():
 	
-
-
-
-	
 	clear_terminal()
 
 
