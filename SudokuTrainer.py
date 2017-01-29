@@ -13,6 +13,7 @@ import time
 
 def main():
 	
+	
 	clear_terminal()
 
 
@@ -26,7 +27,7 @@ def main():
 
 	print(sudoku.print_board())
 
-	SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=.20)
+	SudokuSolver.solve(sudoku, print_to_console=True, print_wait_time=.20)
 	
 	"""	
 	for sud in suds:
