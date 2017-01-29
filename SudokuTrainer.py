@@ -21,18 +21,18 @@ def main():
 
     sudoku = suds[4]
 
-    print(sudoku.print_board())
+    # print(sudoku.print_board())
 
-    SudokuSolver.solve(sudoku, print_to_console=True, print_wait_time=.20)
+    #SudokuSolver.solve(sudoku, print_to_console=True, print_wait_time=0)
 
-    """	
-	for sud in suds:
-		clear_terminal()
-		print(sud.print_board())
-		time.sleep(1)
-		SudokuSolver.solve(sud, True, 0.1)
-		time.sleep(1)
-	#"""
+    #"""
+    for sud in suds:
+        clear_terminal()
+        print(sud.print_board())
+        #time.sleep(1)
+        SudokuSolver.solve(sud, True, 0.1)
+        time.sleep(1)
+    #"""
     """
 	for sud in suds:
 		print(sud.print_board())

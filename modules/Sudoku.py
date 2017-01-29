@@ -260,8 +260,14 @@ class Sudoku(object):
         Returns:
             bool -- true if sudoku is solved and finished
         """
-        return self.counts[0] == 0
-    
+        if self.counts[0] != 0:
+            return False
+
+        for i in range(1,10):
+            if self.counts[i] != 9:
+                return False
+                
+        return True
 
     def progress(self):
         """Percetange of board solved as a number between zero and one

@@ -40,8 +40,11 @@ class SudokuSolver(object):
 
             if not (change_by_block or change_by_row):
                 change_by_col = SudokuSolver.alg_OnlyOptionByRow(sudoku)
+            
+            if not (change_by_block or change_by_row or change_by_col):
+                change_by_uniquepossible = SudokuSolver.alg_ConvertUnqiePossibles(sudoku)
 
-            still_changing = change_by_block or change_by_row or change_by_col
+            still_changing = change_by_block or change_by_row or change_by_col or change_by_uniquepossible
 
             if print_to_console:
                 time.sleep(print_wait_time)
@@ -304,3 +307,28 @@ class SudokuSolver(object):
             sudoku.log.append(
                 "alg_OnlyOptionByCol_PerColNum(sudoku, %d, %d), something went wrong" % (row, num))
             return False
+
+    def alg_ConvertUnqiePossibles(sudoku):
+        """Converts any possibles with only one option to a solution
+        
+        Looks through all the possibles left on the sudoku board to see if there are any with
+        one unique solution. Converts any unique possibles into a solution
+        
+        Arguments:
+            sudoku {Sudoku} -- Sudoku to run algorithm on
+        
+        Returns:
+            bool -- true if a change has occured
+        """
+
+        changed = False
+        for row in range(0,9):
+            for col in range(0,9):
+                if len(sudoku.board_possibles[row][col]) == 1:
+                    num = sudoku.board_possibles[row][col][0]
+                    sudoku[row, col] = num
+                    sudoku.log.append("alg_ConvertUnqiePossibles(), adding %d to [%d, %d]" % (num, row, col))
+                    sudoku.actions.append("Success! Adding %d to location row %d, col %d" % (num, row, col))
+                    changed = True
+        return changed
+        
