@@ -1,6 +1,0 @@
-
-- Documentation, see if I can get autodocumentation going
-- Checking methods to check rows, columns and blocks are consistent and correct
-- More Algorithms!
-- How to do more stringent testing?
-- Real generation

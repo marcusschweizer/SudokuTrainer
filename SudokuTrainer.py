@@ -30,7 +30,7 @@ def main():
 
 	print(sudoku.print_board())
 
-	SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=0)
+	SudokuSolver.solve(sudoku, print_to_terminal=True, print_wait_time=.20)
 	
 	"""	
 	for sud in suds:
