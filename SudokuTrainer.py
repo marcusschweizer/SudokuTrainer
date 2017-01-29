@@ -9,27 +9,23 @@ from modules.helper import *
 import time
 
 
-
-
 def main():
-	
-	
-	clear_terminal()
 
+    clear_terminal()
 
-	data_file = "data/example.txt"
+    data_file = "data/example.txt"
 
-	#fileio.to_file(sud1, data_file)
-	suds = fileio.from_file(data_file)
-	suds = [sud for sud in suds if not sud.is_empty()]
+    #fileio.to_file(sud1, data_file)
+    suds = fileio.from_file(data_file)
+    suds = [sud for sud in suds if not sud.is_empty()]
 
-	sudoku = suds[4]
+    sudoku = suds[4]
 
-	print(sudoku.print_board())
+    print(sudoku.print_board())
 
-	SudokuSolver.solve(sudoku, print_to_console=True, print_wait_time=.20)
-	
-	"""	
+    SudokuSolver.solve(sudoku, print_to_console=True, print_wait_time=.20)
+
+    """	
 	for sud in suds:
 		clear_terminal()
 		print(sud.print_board())
@@ -37,11 +33,11 @@ def main():
 		SudokuSolver.solve(sud, True, 0.1)
 		time.sleep(1)
 	#"""
-	"""
+    """
 	for sud in suds:
 		print(sud.print_board())
 	#"""
-	"""
+    """
 	sud3 = Sudoku()
 
 	SudokuGenerator.generate_random(sud3)
@@ -52,4 +48,4 @@ def main():
 	#"""
 
 if __name__ == '__main__':
-	main()
+    main()
