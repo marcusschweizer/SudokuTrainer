@@ -51,7 +51,6 @@ class SudokuSolver(object):
                 total_wait_time += print_wait_time
                 clear_terminal()
                 print(sudoku.print_board())
-                print(sudoku.counts)
                 if not sudoku.is_solved():
                     print("Solving : %.1f%%" % (sudoku.progress() * 100))
 
@@ -62,6 +61,19 @@ class SudokuSolver(object):
             print("Sorry, wasn't able to solve it completely, went from %.1f%% and %.1f%% solved" % (
                 start_progress * 100, sudoku.progress() * 100))
             print(sudoku.board_possibles)
+
+    def solve_ByOnlyOption(sudoku):
+        if sudoku.is_solved():
+            return
+        
+        for i in range(1,10):
+            SudokuSolver.alg_OnlyOptionByBlock_PerNum(sudoku, i)
+            SudokuSolver.alg_OnlyOptionByCol_PerNum(sudoku, i)
+            SudokuSolver.alg_OnlyOptionByRow_PerNum(sudoku, i)
+            
+
+            
+
 
     def alg_OnlyOptionByBlock(sudoku):
         """Wrapper for Only Option by Block algorithm, look for all nums in all blocks
@@ -185,6 +197,13 @@ class SudokuSolver(object):
                 success = True
         return success
 
+    def alg_OnlyOptionByRow_PerNum(sudoku, num):
+        success - False
+        for row in range(0,9):
+            if SudokuSolver.alg_OnlyOptionByRow_PerRowNum(sudoku, row, num):
+                success = True
+        return success
+
     def alg_OnlyOptionByRow_PerRowNum(sudoku, row, num):
         """Only Option by Row algorithm
 
@@ -258,6 +277,13 @@ class SudokuSolver(object):
         """
         success = False
         for num in range(1, 10):
+            if SudokuSolver.alg_OnlyOptionByCol_PerColNum(sudoku, col, num):
+                success = True
+        return success
+
+    def alg_OnlyOptionByCol_PerNum(sudoku, num):
+        success = False
+        for col in range(0, 9):
             if SudokuSolver.alg_OnlyOptionByCol_PerColNum(sudoku, col, num):
                 success = True
         return success

@@ -11,14 +11,12 @@ A sudoku application in Python3 with the purpose of:
 
 ## TODO:
 
-* Check what happens to possibles when clearing cell
-* Checking methods to check rows, columns and blocks are consistent and correct
-* More Algorithms!
-    * Possibles -> reductions
-* Testing
-* Real generation algorithms
-* saving and reading from file
-	* append saves to end of file
-	* able to handle different inputs
+* Implement proper testing 
+* Sudoku generation from scratch
+* Further Solving Algorithms 
+	* Reduction of possibles matrix
+* Use OCR to input from images of newspaper/screenshots
+* Method to advise on "Next Step" for partially completed
+
 
 ## CHANGELOG

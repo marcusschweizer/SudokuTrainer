@@ -29,8 +29,7 @@ def main():
     for sud in suds:
         clear_terminal()
         print(sud.print_board())
-        #time.sleep(1)
-        SudokuSolver.solve(sud, True, 0.1)
+        SudokuSolver.solve(sud, True, 0.05)
         time.sleep(1)
     #"""
     """
